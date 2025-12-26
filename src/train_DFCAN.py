@@ -1,9 +1,9 @@
 import argparse
-from keras import optimizers
+from tensorflow.keras import optimizers
 import matplotlib.pyplot as plt
 import numpy as np
 import datetime
-from keras.callbacks import TensorBoard
+from tensorflow.keras.callbacks import TensorBoard
 import glob
 import os
 import tensorflow as tf

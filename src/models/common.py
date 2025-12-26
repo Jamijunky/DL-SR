@@ -1,6 +1,6 @@
-from keras.layers.convolutional import Conv2D, Conv3D
-from keras.layers.advanced_activations import LeakyReLU
-from keras import backend as K
+from tensorflow.keras.layers import Conv2D, Conv3D
+from tensorflow.keras.layers import LeakyReLU
+from tensorflow.keras import backend as K
 import numpy as np
 import tensorflow as tf
 
@@ -12,7 +12,7 @@ def gelu(x):
 
 def fft2d(input, gamma=0.1):
     temp = K.permute_dimensions(input, (0, 3, 1, 2))
-    fft = tf.fft2d(tf.complex(temp, tf.zeros_like(temp)))
+    fft = tf.signal.fft2d(tf.cast(temp, tf.complex64))
     absfft = tf.pow(tf.abs(fft)+1e-8, gamma)
     output = K.permute_dimensions(absfft, (0, 2, 3, 1))
     return output
@@ -34,7 +34,7 @@ def fftshift2d(input, size_psc=128):
     fs21 = input[:, 0:h // 2, -w // 2:w, :]
     fs22 = input[:, 0:h // 2, 0:w // 2, :]
     output = tf.concat([tf.concat([fs11, fs21], axis=1), tf.concat([fs12, fs22], axis=1)], axis=2)
-    output = tf.image.resize_images(output, (size_psc, size_psc), 0)
+    output = tf.image.resize(output, (size_psc, size_psc), method='nearest')
     return output
 
 

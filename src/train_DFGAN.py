@@ -1,11 +1,11 @@
 import argparse
-from keras import optimizers
-from keras.layers import Input
-from keras.models import Model
+from tensorflow.keras import optimizers
+from tensorflow.keras.layers import Input
+from tensorflow.keras.models import Model
 import matplotlib.pyplot as plt
 import numpy as np
 import datetime
-from keras.callbacks import TensorBoard
+from tensorflow.keras.callbacks import TensorBoard
 import glob
 import os
 import tensorflow as tf

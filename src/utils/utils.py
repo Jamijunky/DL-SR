@@ -1,5 +1,11 @@
 import numpy as np
-from skimage.measure import compare_mse, compare_nrmse, compare_psnr, compare_ssim
+from skimage.metrics import (
+    mean_squared_error,
+    normalized_root_mse,
+    peak_signal_noise_ratio,
+    structural_similarity
+)
+
 
 
 def prctile_norm(x, min_prc=0, max_prc=100):
